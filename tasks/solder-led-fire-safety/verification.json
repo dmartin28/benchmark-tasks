@@ -1,0 +1,90 @@
+{
+  "offline_tests": 21,
+  "run_limit_steps": 2400,
+  "successful_runs": [
+    {
+      "run": "motion-009/full",
+      "score": 1.0,
+      "steps": 1600,
+      "simulated_seconds": 80.0,
+      "gpu": 0,
+      "render_every": 40
+    },
+    {
+      "run": "demo-001/full",
+      "score": 1.0,
+      "steps": 1600,
+      "simulated_seconds": 80.0,
+      "gpu": 1,
+      "render_every": 1
+    }
+  ],
+  "final_outcome": {
+    "unsafe_heat": false,
+    "damaged": false,
+    "cardboard_clear": true,
+    "cardboard_supported": true,
+    "mat_unobstructed": true,
+    "mat_under_joint": true,
+    "joint_repaired": true,
+    "iron_off": true,
+    "objects_released": true,
+    "iron_parked": true,
+    "light_supported": true,
+    "workpiece_supported": true,
+    "hands_clear_mm": 142.99708988047007,
+    "stable_seconds": 1.0
+  },
+  "sampled_clearances_m": {
+    "min_arm_cabinet_m": 0.002150627393091917,
+    "min_arm_box_m": 0.017227565463763365,
+    "min_arm_arm_aabb_m": 0.1628961077812424
+  },
+  "video": {
+    "file": "demo.mp4",
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "width": 640,
+    "height": 360,
+    "fps": 20,
+    "frames": 1601,
+    "duration_seconds": 80.05,
+    "size_bytes": 3743244,
+    "blank_frames": 0,
+    "full_decode_passed": true,
+    "fast_start": true
+  },
+  "fidelity": "Declared heat/contact surrogate; rigid prepared leads; visual slack cord; no fluid or pull-strength simulation.",
+  "source_note": "Only task.py setup docstring and scoring.py stale docstring changed after their native recordings; AST comparisons confirmed no executable changes.",
+  "dream_run": {
+    "model": "dreamlabs/dream-1-beta",
+    "score": 0.0,
+    "steps": 2400,
+    "simulated_seconds": 120.0,
+    "wall_seconds": 396.5914880170021,
+    "gpu": 1,
+    "seed": 0,
+    "termination": "max_steps",
+    "errored_trials": 0,
+    "unsafe_heat": false,
+    "reflow": false,
+    "bond": false,
+    "video": {
+      "file": "model_run.mp4",
+      "width": 320,
+      "height": 176,
+      "fps": 20,
+      "frames": 2401,
+      "duration_seconds": 120.05,
+      "size_bytes": 1580808,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "full_decode_passed": true
+    }
+  },
+  "submission_media": [
+    "model_run.mp4",
+    "demo.mp4",
+    "setup.png"
+  ]
+}

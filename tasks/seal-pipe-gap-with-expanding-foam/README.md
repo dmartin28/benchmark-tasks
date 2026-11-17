@@ -95,6 +95,19 @@ markers) and `score_report.json` (sectors sealed, the fill and bulge per sector,
 step) are written to the output folder alongside the videos. The close-up is an extra camera outside the robot's
 observations, and its foam markers are drawn from the scoring ledger: it illustrates the score, it doesn't measure it.
 
+## Fidelity
+
+`task.json` gives the summary; the full list:
+- **The can.** The can, straw and trigger are rigid bodies, modelled on a 12 oz straw-applicator gap-filler can like
+  GREAT STUFF Gaps & Cracks but not an exact replica. The trigger is a hinged lever with a return spring (4.5 N at
+  the contact point, fully pressed); that force is an estimate.
+- **The foam** is not simulated as a fluid (see Scoring): flow follows the trigger's travel and the valve's attitude;
+  liquid in the gap is booked to its sector, doubles as it cures with a 3 s time constant standing in for the minutes
+  a real can takes, and spreads along the ring, venting as a bulge. Depth is not modelled; the 90%-of-volume rule
+  stands in for the photo's face check.
+- **The arms** are compliant (about 7 mm per N at the fingertips), so pressing the trigger pushes the held can; the
+  demo corrects for this with closed-loop tracking.
+
 ## Results
 
 | Run | Foam in the gap | Outside the gap | Ring sealed | Bulge | Score | Steps |

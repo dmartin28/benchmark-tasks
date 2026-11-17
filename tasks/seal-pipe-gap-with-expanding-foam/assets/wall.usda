@@ -1,0 +1,426 @@
+#usda 1.0
+(
+    defaultPrim = "wall"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "wall" (
+    prepend apiSchemas = ["PhysicsRigidBodyAPI"]
+)
+{
+    def "Looks"
+    {
+        def Material "spruce"
+        {
+            token outputs:surface.connect = </wall/Looks/spruce/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.82, 0.68, 0.48)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "drywall"
+        {
+            token outputs:surface.connect = </wall/Looks/drywall/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.8, 0.8, 0.78)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.9
+                token outputs:surface
+            }
+        }
+
+        def Material "copper"
+        {
+            token outputs:surface.connect = </wall/Looks/copper/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.78, 0.45, 0.25)
+                float inputs:metallic = 0.9
+                float inputs:roughness = 0.3
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cube "board_left" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        float3 xformOp:scale = (0.038, 0.625, 1.3)
+        double3 xformOp:translate = (0.019, 0.3375, 0.43000000000000005)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "board_right" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        float3 xformOp:scale = (0.038, 0.625, 1.3)
+        double3 xformOp:translate = (0.019, -0.3375, 0.43000000000000005)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "board_top" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        float3 xformOp:scale = (0.038, 0.05, 1.055)
+        double3 xformOp:translate = (0.019, 0, 0.5525)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "board_bottom" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        float3 xformOp:scale = (0.038, 0.05, 0.195)
+        double3 xformOp:translate = (0.019, 0, -0.12249999999999998)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "bore_00" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.027000000000000003, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_01" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.9914449, 0.13052619, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.02607999730980485, 0.006988114217768061)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_02" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.9659258, 0.25881904, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.02338268590217985, 0.0135)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_03" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.9238795, 0.38268343, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.01909188309203679, 0.019091883092036785)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_04" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.8660254, 0.5, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.013500000000000005, 0.023382685902179845)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_05" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.7933533, 0.6087614, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.006988114217768061, 0.02607999730980485)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_06" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 1.653273178848927e-18, 0.027000000000000003)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_07" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.6087614, 0.7933533, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.006988114217768058, 0.02607999730980485)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_08" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.5, 0.8660254, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.013499999999999996, 0.02338268590217985)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_09" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.38268343, 0.9238795, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.019091883092036785, 0.01909188309203679)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_10" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.25881904, 0.9659258, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.02338268590217985, 0.0135)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_11" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (0.13052619, 0.9914449, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.026079997309804846, 0.0069881142177680685)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_12" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (6.123234e-17, 1, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.027000000000000003, 3.306546357697854e-18)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_13" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.13052619, 0.9914449, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.02607999730980485, -0.006988114217768062)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_14" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.25881904, 0.9659258, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.023382685902179852, -0.013499999999999995)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_15" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.38268343, 0.9238795, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.019091883092036795, -0.019091883092036774)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_16" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.5, 0.8660254, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.013500000000000014, -0.023382685902179838)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_17" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.6087614, 0.7933533, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -0.006988114217768058, -0.02607999730980485)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_18" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.70710677, 0.70710677, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, -4.959819536546781e-18, -0.027000000000000003)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_19" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.7933533, 0.6087614, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.0069881142177680485, -0.02607999730980485)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_20" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.8660254, 0.5, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.013500000000000005, -0.023382685902179845)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_21" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.9238795, 0.38268343, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.01909188309203678, -0.01909188309203679)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_22" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.9659258, 0.25881904, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.023382685902179838, -0.013500000000000014)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "bore_23" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/spruce>
+        double size = 1
+        quatf xformOp:orient = (-0.9914449, 0.13052619, 0, 0)
+        float3 xformOp:scale = (0.038, 0.004, 0.006911756)
+        double3 xformOp:translate = (0.019, 0.026079997309804842, -0.006988114217768083)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Mesh "corner_fill" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 12, 13, 15, 14, 14, 15, 17, 16, 16, 17, 19, 18, 18, 19, 21, 20, 20, 21, 23, 22, 22, 23, 25, 24, 24, 25, 27, 26, 26, 27, 29, 28, 28, 29, 31, 30, 30, 31, 33, 32, 32, 33, 35, 34, 34, 35, 37, 36, 36, 37, 39, 38, 38, 39, 41, 40, 40, 41, 43, 42, 42, 43, 45, 44, 44, 45, 47, 46, 46, 47, 49, 48, 48, 49, 51, 50, 50, 51, 53, 52, 52, 53, 55, 54, 54, 55, 57, 56, 56, 57, 59, 58, 58, 59, 61, 60, 60, 61, 63, 62, 62, 63, 65, 64, 64, 65, 67, 66, 66, 67, 69, 68, 68, 69, 71, 70, 70, 71, 73, 72, 72, 73, 75, 74, 74, 75, 77, 76, 76, 77, 79, 78, 78, 79, 81, 80, 80, 81, 83, 82, 82, 83, 85, 84, 84, 85, 87, 86, 86, 87, 89, 88, 88, 89, 91, 90, 90, 91, 93, 92, 92, 93, 95, 94, 94, 95, 1, 0]
+        rel material:binding = </wall/Looks/spruce>
+        normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0)] (
+            interpolation = "vertex"
+        )
+        point3f[] points = [(0.001, 0.027, 0), (0.001, 0.025, 0), (0.001, 0.02676901, 0.0035242073), (0.001, 0.025, 0.0032913124), (0.001, 0.026079997, 0.006988114), (0.001, 0.025, 0.00669873), (0.001, 0.024944747, 0.010332453), (0.001, 0.025, 0.010355339), (0.001, 0.023382686, 0.0135), (0.001, 0.025, 0.0144337565), (0.001, 0.02142054, 0.016436558), (0.001, 0.025, 0.019183174), (0.001, 0.019091884, 0.019091884), (0.001, 0.025, 0.025), (0.001, 0.016436558, 0.02142054), (0.001, 0.019183174, 0.025), (0.001, 0.0135, 0.023382686), (0.001, 0.0144337565, 0.025), (0.001, 0.010332453, 0.024944747), (0.001, 0.010355339, 0.025), (0.001, 0.006988114, 0.026079997), (0.001, 0.00669873, 0.025), (0.001, 0.0035242073, 0.02676901), (0.001, 0.0032913124, 0.025), (0.001, 1.6532732e-18, 0.027), (0.001, 1.5308085e-18, 0.025), (0.001, -0.0035242073, 0.02676901), (0.001, -0.0032913124, 0.025), (0.001, -0.006988114, 0.026079997), (0.001, -0.00669873, 0.025), (0.001, -0.010332453, 0.024944747), (0.001, -0.010355339, 0.025), (0.001, -0.0135, 0.023382686), (0.001, -0.0144337565, 0.025), (0.001, -0.016436558, 0.02142054), (0.001, -0.019183174, 0.025), (0.001, -0.019091884, 0.019091884), (0.001, -0.025, 0.025), (0.001, -0.02142054, 0.016436558), (0.001, -0.025, 0.019183174), (0.001, -0.023382686, 0.0135), (0.001, -0.025, 0.0144337565), (0.001, -0.024944747, 0.010332453), (0.001, -0.025, 0.010355339), (0.001, -0.026079997, 0.006988114), (0.001, -0.025, 0.00669873), (0.001, -0.02676901, 0.0035242073), (0.001, -0.025, 0.0032913124), (0.001, -0.027, 3.3065463e-18), (0.001, -0.025, 3.061617e-18), (0.001, -0.02676901, -0.0035242073), (0.001, -0.025, -0.0032913124), (0.001, -0.026079997, -0.006988114), (0.001, -0.025, -0.00669873), (0.001, -0.024944747, -0.010332453), (0.001, -0.025, -0.010355339), (0.001, -0.023382686, -0.0135), (0.001, -0.025, -0.0144337565), (0.001, -0.02142054, -0.016436558), (0.001, -0.025, -0.019183174), (0.001, -0.019091884, -0.019091884), (0.001, -0.025, -0.025), (0.001, -0.016436558, -0.02142054), (0.001, -0.019183174, -0.025), (0.001, -0.0135, -0.023382686), (0.001, -0.0144337565, -0.025), (0.001, -0.010332453, -0.024944747), (0.001, -0.010355339, -0.025), (0.001, -0.006988114, -0.026079997), (0.001, -0.00669873, -0.025), (0.001, -0.0035242073, -0.02676901), (0.001, -0.0032913124, -0.025), (0.001, -4.9598196e-18, -0.027), (0.001, -4.5924257e-18, -0.025), (0.001, 0.0035242073, -0.02676901), (0.001, 0.0032913124, -0.025), (0.001, 0.006988114, -0.026079997), (0.001, 0.00669873, -0.025), (0.001, 0.010332453, -0.024944747), (0.001, 0.010355339, -0.025), (0.001, 0.0135, -0.023382686), (0.001, 0.0144337565, -0.025), (0.001, 0.016436558, -0.02142054), (0.001, 0.019183174, -0.025), (0.001, 0.019091884, -0.019091884), (0.001, 0.025, -0.025), (0.001, 0.02142054, -0.016436558), (0.001, 0.025, -0.019183174), (0.001, 0.023382686, -0.0135), (0.001, 0.025, -0.0144337565), (0.001, 0.024944747, -0.010332453), (0.001, 0.025, -0.010355339), (0.001, 0.026079997, -0.006988114), (0.001, 0.025, -0.00669873), (0.001, 0.02676901, -0.0035242073), (0.001, 0.025, -0.0032913124)]
+    }
+
+    def Cube "backer" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        rel material:binding = </wall/Looks/drywall>
+        double size = 1
+        float3 xformOp:scale = (0.012, 1.3, 1.3)
+        double3 xformOp:translate = (0.044, 0, 0.43000000000000005)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cylinder "pipe" (
+        prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+    )
+    {
+        uniform token axis = "X"
+        double height = 0.2
+        rel material:binding = </wall/Looks/copper>
+        double radius = 0.0111
+        double3 xformOp:translate = (0.010000000000000002, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
+

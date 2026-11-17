@@ -1,0 +1,214 @@
+#usda 1.0
+(
+    defaultPrim = "can"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "can"
+{
+    def "Looks"
+    {
+        def Material "body"
+        {
+            token outputs:surface.connect = </can/Looks/body/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.2, 0.36, 0.62)
+                float inputs:metallic = 0.3
+                float inputs:roughness = 0.35
+                token outputs:surface
+            }
+        }
+
+        def Material "silver"
+        {
+            token outputs:surface.connect = </can/Looks/silver/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.78, 0.79, 0.8)
+                float inputs:metallic = 0.8
+                float inputs:roughness = 0.3
+                token outputs:surface
+            }
+        }
+
+        def Material "actuator"
+        {
+            token outputs:surface.connect = </can/Looks/actuator/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.08, 0.08, 0.09)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "straw"
+        {
+            token outputs:surface.connect = </can/Looks/straw/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.92, 0.92, 0.9)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+        }
+
+        def Material "lever"
+        {
+            token outputs:surface.connect = </can/Looks/lever/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.95, 0.45, 0.1)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "body" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsArticulationRootAPI", "PhysxArticulationAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0.075)
+        float3 physics:diagonalInertia = (0.0014725782, 0.0014725782, 0.00023765625)
+        float physics:mass = 0.446
+        custom bool physxArticulation:enabledSelfCollisions = 0
+        custom float physxArticulation:sleepThreshold = 0
+        custom float physxArticulation:stabilizationThreshold = 0
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cylinder "can" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            double height = 0.19
+            rel material:binding = </can/Looks/body>
+            custom float physxCollision:minTorsionalPatchRadius = 0.005
+            custom float physxCollision:torsionalPatchRadius = 0.01
+            double radius = 0.0325
+            double3 xformOp:translate = (0, 0, 0.095)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cylinder "rim" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            double height = 0.006
+            rel material:binding = </can/Looks/silver>
+            double radius = 0.0333
+            double3 xformOp:translate = (0, 0, 0.187)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cylinder "valve_cup" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            double height = 0.01
+            rel material:binding = </can/Looks/silver>
+            double radius = 0.0125
+            double3 xformOp:translate = (0, 0, 0.195)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cylinder "actuator" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            double height = 0.02
+            rel material:binding = </can/Looks/actuator>
+            double radius = 0.0065
+            double3 xformOp:translate = (0, 0, 0.21000000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cylinder "straw" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+        )
+        {
+            uniform token axis = "Z"
+            double height = 0.19202081528017131
+            rel material:binding = </can/Looks/straw>
+            double radius = 0.003
+            quatf xformOp:orient = (0.9238795, 0, 0.38268343, 0)
+            double3 xformOp:translate = (0.07438961030678928, 0, 0.2848896103067893)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+        }
+    }
+
+    def Xform "lever" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        float physics:mass = 0.004
+        quatf xformOp:orient = (0.9961947, 0, 0.087155744, 0)
+        double3 xformOp:translate = (0.0065, 0, 0.21100000000000002)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient"]
+
+        def Cube "strip" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI"]
+        )
+        {
+            rel material:binding = </can/Looks/lever>
+            double size = 1
+            float3 xformOp:scale = (0.0415, 0.008, 0.003)
+            double3 xformOp:translate = (0.02075, 0, -0.0015)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "plunger" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </can/Looks/lever>
+            double size = 1
+            float3 xformOp:scale = (0.005, 0.006, 0.006)
+            double3 xformOp:translate = (0.0025, 0, -0.004)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+    }
+
+    def "joints"
+    {
+        def PhysicsRevoluteJoint "lever" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </can/body>
+            rel physics:body1 = </can/lever>
+            point3f physics:localPos0 = (0.0065, 0, 0.211)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.9961947, 0, 0.087155744, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = 0
+            float physics:upperLimit = 15
+        }
+    }
+}
+

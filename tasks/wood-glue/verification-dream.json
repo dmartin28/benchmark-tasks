@@ -1,0 +1,141 @@
+{
+  "run": "commercial-dream-001",
+  "mode": "dream",
+  "rubric": "observable-frame-v1",
+  "score": 0.0,
+  "success": false,
+  "steps": 2400,
+  "simulated_seconds": 120.0,
+  "source_unchanged": true,
+  "current_source_matches_run": false,
+  "post_recording_source_differences": {
+    "task.py": {
+      "recorded": "06b02ad8d14cfe7aa40383c2f8d80a9f4b42536941545492a53d48e981636b48",
+      "current": "b47264c96ef0e3fbc23dd34ddeeb2cefd536c97a9432030408aed6df12004a8f",
+      "reason": "Module docstring only; executable AST unchanged."
+    },
+    "wood_glue/controller.py": {
+      "recorded": "04f02f5518656fa49aeaf1f20c95210d73e59af60e357c6736328f420f7f2934",
+      "current": "553390746383421b0cbac672bba093302296fadc43a3a5bbff06a4ec2d4ebd70",
+      "reason": "Unused scripted controller; DreamPolicy branch sets controller=None."
+    }
+  },
+  "source_sha256": {
+    "assets/bottle-label.png": "b2f395ee3baab6a21d3a6c1ea2e3fb3c761702ed487f77286af685aa33ba1228",
+    "assets/bottle-label.svg": "fb718fadbee35f15de9bbcf5e5d656cf5b9b7cc175f2db623f2923cba229985e",
+    "plot_film.py": "aa5ece78c7b43f00eb52430f2c9a8c98c7eaa81220f5275067caf7fd962208ba",
+    "run.py": "ea03005e43adbbddc4382cf1729b843d0f1333c19e557fb6bf5b1be881cdb72c",
+    "run_dream.py": "f0669248da904977a12ff1b75c70e5fe507edc77a962042183dbaf80cc1d932c",
+    "task.py": "06b02ad8d14cfe7aa40383c2f8d80a9f4b42536941545492a53d48e981636b48",
+    "tests/test_assembly.py": "b64a13a18a6670369a02a33420c775b7f6803dafae2a34c5266a259587d231a9",
+    "tests/test_dream_adapter.py": "ac9221b14361966c2023241d317becb2623cff519b09dbdf5faf9fe43283c0f1",
+    "tests/test_held_corner.py": "b15ca8ad7f6cccb95c2cf27d3efbe7cef15e3927acf14681e719184cbdeb256b",
+    "tests/test_held_glue.py": "9e7e95c501e29a903e88286c5ea62042164c125d5bffe5630a1b0e31a9a4b985",
+    "tests/test_model.py": "9fa8033653100cc4add736fe7a795cdfc6e2075b9c9ebb8d941e03a058710985",
+    "tests/test_observable_scoring.py": "88e1ba3c7ef51aace4eb85d902a45b732b6b78753b0358989a0c2fb8356bef45",
+    "tests/test_pickup.py": "fdacba31de37305ea775a6b5fdc6caba8103dcf7e50e832654f0d912328ad9b7",
+    "tests/test_table_press.py": "43e6ecf787e038964c3c0db34d058973b3660845612503bff79f85ed8ab1c43d",
+    "tests/test_wood_clearance.py": "c7af17c152f59780f6548d2c5adf1dd2951b7d2fb24c9b89b3abeab823784b4d",
+    "wood_glue/__init__.py": "de51f553370fbdc836a844249128970ae49f5afd07fc7e5fb40bc35e9d0ddf4d",
+    "wood_glue/_toolkit.py": "a8ece0758d2acff3e566f25a87ff0f71fc65858cbf9716c91f9c154761756d9b",
+    "wood_glue/assembly.py": "b86e3b3847737069b8447cc2d08713bfc5cc34dd06788b64309a4e213f00da69",
+    "wood_glue/bond.py": "e6985fd88de87c3969bbeb8f4d51fdeffb5dfb751db861ec43ea895f6de48d72",
+    "wood_glue/bottle_visual.py": "2d084d3f83957a497ec67f519e023f58cb062f252ab3025b06d303a948f31dfb",
+    "wood_glue/clearance.py": "ac25e7e14a81050e4357ae20ba46aec30ad6fa6794f496c7dc5290533bb2ea08",
+    "wood_glue/controller.py": "04f02f5518656fa49aeaf1f20c95210d73e59af60e357c6736328f420f7f2934",
+    "wood_glue/dream_run.py": "f644fc1ad70443b95a6595aa275e120b10016a9f165ff9e1b10f0ec916cbf85a",
+    "wood_glue/geometry.py": "e25563bf8ced095cb0e3e0391428cb43e0a7c7caad90835f679b49c87580a725",
+    "wood_glue/inspection.py": "1b24706dcc2f57cbf64e6e8288a6430a9c9655a68bb8c630ed43566c26634b76",
+    "wood_glue/milestone.py": "bd41e1be024caeb213b9c76445439fd460a01c97273b8e7846736e782b124716",
+    "wood_glue/model.py": "5e1850f1ecf6aee12284c3fcb3f803d76fa7b9363b3da298bf742f680da28a91",
+    "wood_glue/observable.py": "6ceed6026f8ffc8627ebdc73a6b69ec11a9a404bce8e41cb0070ffafcb7a1b4d",
+    "wood_glue/runtime.py": "65c47be432cb4f0490f37c60dc32923840c5d5fdf68c06904acafef711b0abd2",
+    "wood_glue/scene.py": "f535477dea84500d0c8346afbefaba83494c4d18276e1715eb5ba9d77e74ada8"
+  },
+  "receipt_sha256": "e055a3844bf363859c65ee04a22826b93fb81eeb4ab5ef70aa64eb600a9516bc",
+  "replay_max_score_error": 0.0,
+  "replay_max_emitted_ml_error": 0.0,
+  "final_finger_contact_rebuilt_from_measured_joints": true,
+  "scale_dose_g": 0.0,
+  "dispensed_mass_g": 0.0,
+  "stray_glue_mm2": 0.0,
+  "held_seconds": 0.0,
+  "final_joint": {
+    "seated": false,
+    "precision_seated": false,
+    "bottom_error_mm": 0.0003564737334205148,
+    "angle_deg": 89.9999770065615,
+    "gap_mm": 1.1509471782180111e-05,
+    "tangent_error_mm": 125.00021776796183,
+    "flush_mm": 6.132950540803099e-05,
+    "flat": true
+  },
+  "final_hands": {
+    "left": {
+      "piece": "loose_leg",
+      "holding": false,
+      "finger_contacts": {
+        "tip_left": false,
+        "tip_right": false
+      }
+    },
+    "right": {
+      "piece": "head_casing",
+      "holding": false,
+      "finger_contacts": {
+        "tip_left": false,
+        "tip_right": false
+      }
+    }
+  },
+  "model_actions_checked": 2368,
+  "model_sessions": 1,
+  "video_errors": {},
+  "videos": {
+    "top_cam.mp4": {
+      "codec_name": "h264",
+      "width": 320,
+      "height": 176,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "20/1",
+      "duration": "120.050000",
+      "nb_read_frames": "2401",
+      "bytes": 680784,
+      "sha256": "21ffca21be9345477245e3d7c6ecf52c0142340520ab916fd7edc1a712872a74"
+    },
+    "left_cam.mp4": {
+      "codec_name": "h264",
+      "width": 320,
+      "height": 176,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "20/1",
+      "duration": "120.050000",
+      "nb_read_frames": "2401",
+      "bytes": 768527,
+      "sha256": "ced25ce5017e67b20816c278d343741d07f3890a88f85e0430428bd248559269"
+    },
+    "right_cam.mp4": {
+      "codec_name": "h264",
+      "width": 320,
+      "height": 176,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "20/1",
+      "duration": "120.050000",
+      "nb_read_frames": "2401",
+      "bytes": 888588,
+      "sha256": "8c1c7be46a05340e36b7dd57928f2b79ecb8fe83bc867b3d9c0e3dc8f547c188"
+    },
+    "overview.mp4": {
+      "bytes": 3781822,
+      "sha256": "08aa657da3f2676eb9410094b9ad0b305bd12040080994f862870501d17b4499",
+      "playback_speed": 1.0
+    }
+  },
+  "cpu_checks_passed": 103,
+  "physical_calibration_claimed": false,
+  "accelerated_adhesive_cure": false,
+  "seed": 0,
+  "wall_seconds": 681.7058825979475,
+  "task_definition_sha256": "25dfc73c0aa2895e67de61c01edd819bde4fd8ee49596e7b482c0baae2556204",
+  "submission_documentation_change": "Fidelity abridged for the 500-character bot limit; complete prior note retained in README. Scene, scoring and recorded motions unchanged."
+}

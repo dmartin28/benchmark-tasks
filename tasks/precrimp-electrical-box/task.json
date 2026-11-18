@@ -1,0 +1,22 @@
+{
+  "title": "Seat an electrical box and prebend both mounting flaps",
+  "category": "Impact on jobs",
+  "keywords": [
+    "bimanual",
+    "electrician",
+    "construction",
+    "electrical box",
+    "sheet metal forming",
+    "precrimp",
+    "springback"
+  ],
+  "instruction": "Seat the electrical box against the flat web of the vertical U-channel at the marked height. Bend both mounting flaps inward around their flanges, with return tails at 150–180 degrees and free tips inside the channel. Keep both grippers at least 10 mm from the flaps and hold the result steady for two seconds. Either hand may keep supporting the box body.",
+  "context": "O*NET lists fastening electrical boxes to walls among electricians' tasks (47-2111.00). ABB's Iberville steel-stud-box leaflet documents wrapping mounting brackets before a separate plier crimp. This task isolates that supported preparation step: keep a loose box aligned while forming two slotted sheet-steel brackets around channel edges, leaving both return bends set after the forming hand withdraws. Its box envelope is modeled on the CI3104-KSSX; flap geometry is estimated and thickness is assumed without a physical sample for verification. Final crimping and unsupported retention are outside the task.",
+  "setup": "Standard fixed-base bimanual YAM station, table top z=0.7475 m; x forward, y left, z up. An anchored steel U-channel has a 63.5 mm web, two 31.75 mm flanges, 0.47752 mm sheet and 500 mm height, with no return lips; its origin is (0.28825,-0.015875,0.7475) m and its opening faces +y. It is held in a fixed 67.5 x 180 x 30 mm steel base track. A painted blue reference mark is at z=0.9475 m. The empty prototype steel electrical box is 76.2 mm high x 50.8 mm wide x 63.5 mm deep, body sheet 1.2 mm, modeled mass 0.203 kg including two 54 x 44 x 0.3 mm slotted mounting flaps on the stud side at its front/rear edges. Both flaps start straight. The box starts closed back down, opening up; its opening-plane center is (0.250,-0.180,0.8125) m, and local +x points down, +y points left, +z points forward. All dimensions and flap cutouts are supplied as procedural geometry and USD assets. No wires, fasteners or hand tools are present.",
+  "scoring": "Score at the end. Any credit requires the box origin to be within 5 mm horizontally of seated position (0.28825,-0.041775) m, box orientation within 5 deg of the channel, and its center height within 20 mm of the blue mark. All four fingertips must be at least 10 mm from all flap material; holding the box body is permitted. These conditions and the credited bends must persist for the final 2 seconds, with box translation range at most 5 mm and rotation change at most 2 deg. Per flap: 0.25 for an inward return-tail bend from 60 through 180 deg relative to its initial straight direction; another 0.25 if the bend is at least 150 deg and its free tip is at least 3 mm inside its own flange inner face, in its own half of the channel, between the channel web and a point at least 5 mm behind the flange free edge. Sum the two flap scores (0 to 1). Wrong-direction or over-180-deg folds earn no points for that flap. An unseated box, hand contact with a flap, insufficient hold or damaged/detached parts scores zero. Unsupported retention is not required.",
+  "run_limit": "4,800 control steps (240 seconds at 20 Hz).",
+  "reset_notes": "Use fresh straight mounting flaps for every real trial; plastically formed flaps are not reset by unfolding. Place the empty box and anchored channel as shown. The simulator resets poses, velocities and passive plastic memory before each trial. Use unpowered, deburred components.",
+  "fidelity": "Reference: ABB CI3104-KSSX envelope. Flap thickness is assumed at 0.3 mm; no physical factory box was available to verify it. Each flap has 15 passive elastic-plastic joints: EI/L stiffness and sigma_y*b*t^2/4 plastic moments (assumed E=200 GPa, sigma_y=250 MPa). Flap shape and lipless U-channel are approximations; forming forces/springback are uncalibrated. No fracture model. Supported precrimp; no hands-free retention. PhysX: one 182 N contact peak for 1 ms.",
+  "scores": "Dream-1: 0.00 after 4,800 actions (240.00 seconds). Scripted demo: 1.0 in 3,121 actions (156.05 seconds). Both scores independently checked from saved native states.",
+  "media": "M-CEHV6S"
+}

@@ -1,0 +1,7 @@
+mujoco==3.11.0
+numpy==2.3.1
+trimesh==4.11.1
+shapely==2.1.2
+imageio==2.37.2
+imageio-ffmpeg==0.6.0
+pillow==12.3.0

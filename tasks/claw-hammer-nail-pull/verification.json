@@ -1,0 +1,196 @@
+{
+  "stage": "Step 4 prepared: native GPU demo and one user-approved Dream-1 trial complete; awaiting package review",
+  "setup": {
+    "board_size_mm": [
+      600,
+      139.7,
+      38.1
+    ],
+    "board_mass_kg": 1.02,
+    "setup_image_sha256": "44ec10dec5ce30be7a35b00dfc898abaf160ebd13f1b6ec8b214293f9af86399"
+  },
+  "offline": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "tests_passed": 16
+  },
+  "demo": {
+    "run": "demo-003/full",
+    "physics_device": "cuda:0",
+    "physical_gpu": 0,
+    "seed": 0,
+    "task_score": 1.0,
+    "success": true,
+    "steps": 1930,
+    "simulated_seconds": 96.5,
+    "wall_seconds_excluding_startup": 1012.52,
+    "script_error": null,
+    "blank_frames": 0,
+    "ik_worst_mm_deg": {
+      "left": [
+        0.1,
+        0.0
+      ],
+      "right": [
+        0.1,
+        0.0
+      ]
+    },
+    "claw_work_mm": 19.9945164903079,
+    "final_outcome": {
+      "extraction_m": -0.05002977016105078,
+      "claw_work_m": 0.0199945164903079,
+      "nail_free": true,
+      "nail_in_tray": true,
+      "board_on_table": true,
+      "hammer_on_table": true,
+      "tray_on_table": true,
+      "hands_clear": true,
+      "stable_s": 1.0499999999999403,
+      "invalid": false
+    },
+    "source_sha256": {
+      "task.py": "3ed1ca336329f4c9e1f19f1885b9f0b8abb43aa0318b82c12bd226e6a78ed285",
+      "render_scene.py": "328b215798c2a308b060a610a10db160c2577f17eb85ebf999413217547dde42",
+      "demokit.py": "afb8b054ba53ca15e975e343175dd0ec60c7f5cd9e8a86455115e4c9b88668ee",
+      "nail_scene/runtime.py": "4e7cfbff08a993d848188152b8312dd71dda9bbcd9a67f654c76f84d2f44bd53",
+      "nail_scene/material.py": "a63a2f838b6b52e3e4c2cc8b2c9e281f65cb392e2fbfbb01e491d5b7193a01c9",
+      "nail_scene/__init__.py": "c97cd686f1d69ae4c77a9971212d54f5c93a70ec8a2fa00a93a32859448f0c6e",
+      "nail_scene/scene.py": "8149e64b1cf8cfbc240f54047285f2f12ad410646ad8b2be573554b62ffd8bd6",
+      "nail_scene/preview_camera.py": "14f2ebf12bec747391616806073bb12a9e226301d7be7b3a05c675ada7791e8c",
+      "nail_scene/controller.py": "8d5f04489adb51f37881333f18292a88087c65ff5732ac83bd4d22264c5e0436",
+      "nail_scene/mechkit.py": "4bffcf315c4613f29b7eca77ce1d4af78b26d58c3caac78feb7807e1d8d33496",
+      "nail_scene/scoring.py": "4cd4bf54369f2e3d1d463e2871676fd546bc649a1db026ac7f40137bf4e499fa",
+      "nail_scene/lettering.py": "efe5b3f3dc7226d9599c36c7c83e07c6ac09152b86452bf50a66fb355f0e268e",
+      "tests/test_scoring.py": "8675bec6d7f927c3453471be504ffe39c5f13a98227904c06f1f7d5d73717414",
+      "tests/test_geometry.py": "1aec1b80cb76d47027ca6993697739e590e715c745c410aadd96a695829dd10a",
+      "tests/test_material.py": "74bdf71afbc0e1c071c8c1a9d64379732b365a14dbe6018155dfe6bcf8f3f93f"
+    },
+    "collision_audit": {
+      "samples": 96,
+      "trace_sample_every_controls": 20,
+      "scope": "URDF convex hull vertex distances at observed joints. Candidate arm pairs screened at 50 mm AABB separation. Fingers intentionally contact the board. Not a continuous collision proof.",
+      "distances": {
+        "arm_arm_m": 0.03108930172389235,
+        "nonfinger_board_m": 0.03998153633409736,
+        "arm_table_m": 0.0033077501900605766
+      },
+      "closest_samples": {
+        "board": [
+          1060,
+          "left",
+          "gripper"
+        ],
+        "table": [
+          80,
+          "right"
+        ],
+        "arm_arm": [
+          620,
+          [
+            "link4",
+            "gripper"
+          ]
+        ]
+      }
+    },
+    "video": {
+      "file": "demo.mp4",
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 640,
+      "height": 360,
+      "fps": 20,
+      "duration_seconds": 96.55,
+      "bytes": 4325731,
+      "sha256": "ad6873ef288c256232a1ca870d7e214668da5e30634c14f8105e2f1d6c3b6199"
+    },
+    "visual_inspection_seconds": [
+      11,
+      32,
+      41,
+      47,
+      59,
+      68,
+      86,
+      95
+    ]
+  },
+  "Dream-1": {
+    "model": "dreamlabs/dream-1-beta",
+    "run": "dream-001",
+    "official_log": "adhoc_f659d847.json",
+    "physical_gpu": 0,
+    "seed": 0,
+    "task_score": 0.0,
+    "steps": 2400,
+    "simulated_seconds": 120.0,
+    "wall_seconds_excluding_startup": 1450.8449735590257,
+    "mean_inference_latency_s": 0.5884802092378959,
+    "termination_reason": "max_steps",
+    "trial_error": null,
+    "native_outcome": {
+      "extraction_m": -4.9848269075003504e-08,
+      "claw_work_m": 0.0,
+      "nail_free": false,
+      "nail_in_tray": false,
+      "board_on_table": true,
+      "hammer_on_table": true,
+      "tray_on_table": true,
+      "hands_clear": true,
+      "stable_s": 1.0499999999999403,
+      "invalid": false
+    },
+    "source_sha256": {
+      "task.py": "3ed1ca336329f4c9e1f19f1885b9f0b8abb43aa0318b82c12bd226e6a78ed285",
+      "render_scene.py": "328b215798c2a308b060a610a10db160c2577f17eb85ebf999413217547dde42",
+      "demokit.py": "afb8b054ba53ca15e975e343175dd0ec60c7f5cd9e8a86455115e4c9b88668ee",
+      "nail_scene/runtime.py": "4e7cfbff08a993d848188152b8312dd71dda9bbcd9a67f654c76f84d2f44bd53",
+      "nail_scene/material.py": "a63a2f838b6b52e3e4c2cc8b2c9e281f65cb392e2fbfbb01e491d5b7193a01c9",
+      "nail_scene/__init__.py": "c97cd686f1d69ae4c77a9971212d54f5c93a70ec8a2fa00a93a32859448f0c6e",
+      "nail_scene/scene.py": "8149e64b1cf8cfbc240f54047285f2f12ad410646ad8b2be573554b62ffd8bd6",
+      "nail_scene/preview_camera.py": "14f2ebf12bec747391616806073bb12a9e226301d7be7b3a05c675ada7791e8c",
+      "nail_scene/controller.py": "8d5f04489adb51f37881333f18292a88087c65ff5732ac83bd4d22264c5e0436",
+      "nail_scene/mechkit.py": "4bffcf315c4613f29b7eca77ce1d4af78b26d58c3caac78feb7807e1d8d33496",
+      "nail_scene/scoring.py": "4cd4bf54369f2e3d1d463e2871676fd546bc649a1db026ac7f40137bf4e499fa",
+      "nail_scene/lettering.py": "efe5b3f3dc7226d9599c36c7c83e07c6ac09152b86452bf50a66fb355f0e268e",
+      "tests/test_scoring.py": "8675bec6d7f927c3453471be504ffe39c5f13a98227904c06f1f7d5d73717414",
+      "tests/test_geometry.py": "1aec1b80cb76d47027ca6993697739e590e715c745c410aadd96a695829dd10a",
+      "tests/test_material.py": "74bdf71afbc0e1c071c8c1a9d64379732b365a14dbe6018155dfe6bcf8f3f93f"
+    },
+    "official_log_sha256": "ff96094b37c118da2a71fb9afec2dc3fb0a2c85490836473b4cbf9597c26f29d",
+    "video": {
+      "file": "model_run.mp4",
+      "camera": "top_cam",
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 320,
+      "height": 176,
+      "fps": 20,
+      "duration_seconds": 120.05,
+      "frames": 2401,
+      "all_black_frames": 0,
+      "bytes": 489533,
+      "sha256": "a25c947f5cb4ee2c214bab391391dddcef7cc67eab771f30c6b4d41eca9e1a65"
+    },
+    "visual_inspection_seconds": [
+      0,
+      24,
+      48,
+      72,
+      96,
+      120
+    ],
+    "visual_observation": "Nail remains embedded; no claw extraction. Encoded native top view sampled at setup, four intermediate times and final frame."
+  },
+  "physical_calibration": "not measured; withdrawal resistance and detailed tool dimensions remain estimates",
+  "package": {
+    "required_media": [
+      "model_run.mp4",
+      "demo.mp4",
+      "setup.png"
+    ],
+    "review_stage": "Awaiting Step 4 owner review before Step 5 independent review",
+    "media_id": "Pending authorized upload during submission",
+    "fidelity_characters": 484
+  }
+}

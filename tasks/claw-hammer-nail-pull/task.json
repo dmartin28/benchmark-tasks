@@ -1,0 +1,22 @@
+{
+  "title": "Pull a protruding nail with a claw hammer",
+  "category": "Societal relatability",
+  "keywords": [
+    "construction",
+    "home repair",
+    "claw hammer",
+    "nail extraction",
+    "levering",
+    "tool use",
+    "bimanual"
+  ],
+  "instruction": "Remove the protruding nail from the board with the claw hammer and put the nail in the tray.",
+  "context": "Removing a partly driven nail is a familiar home-repair step when correcting a fixing or reclaiming a board. The hammer claw must catch below the nail head and stay engaged while the handle is levered against the wood.",
+  "setup": "Bimanual YAM with parallel grippers in native READY, fixed seed-0 layout. Coordinates in mm from the midpoint between arm bases: x forward, y left, z above the native wooden 1100 x 1300 x 60 station tabletop. (1) Loose western red cedar 2x6 offcut, actual 600 along x x 139.7 along y x 38.1 thick, dry indoor-conditioned stock nominally 10-14% moisture, approximately 1.02 kg; broad face up, center (240,100,19.55), settling directly on the tabletop. No clamp. (2) A bright smooth steel common nail, Grip-Rite 4C1 reference, 4d: 38.1 under its flat head, nominal shank 2.515, head 6.35 diameter and estimated 1.0 thick, approximately 1.55 g. Driven perpendicular into fresh side grain to 20 penetration; entry at (325,80), head underside 18.1 above the wood. No starter or reused hole. (3) Stanley 51-613 reference curved-claw hammer, 198 g forged steel head, black-painted wooden handle with yellow product label, approximately 288 overall length, 111 head length and 23 head width, estimated 253 g total. Lies on its side directly on the table: head-eye origin (315,-190,14), handle toward -y, butt near y=-463. Full-size separated curved prongs form the V-slot; head and handle details are photo estimates. (4) Ordinary open blue polypropylene parts tray, 140 along x x 110 along y x 20 high, 3 floor/walls, approximately 70 g; floor center (140,320,1.5), opening up. No other loose props, tool stands or grasp aids.",
+  "scoring": "Endpoint tiers, checked with a ruler, setup/end photos and trial video. All credit requires at least 5 mm of withdrawal performed by the hammer claw; finishing the loosened nail by hand is allowed. A direct hand-only pull earns 0. The board must remain unsplit, board/tray/hammer supported on the tabletop, all loose objects released, both hands at least 50 mm from all four objects, and each object's position and orientation change by at most 2 mm and 2 degrees over the final 1 s. An object ending off the bench scores 0. Ordinary fulcrum dents and bending of a removed nail are allowed. Measure extraction relative to the board, not world height. Award the highest complete tier: 0.25: nail still embedded, head raised at least 5 mm from setup; 0.50: still embedded, head raised at least 10 mm; 0.75: nail fully withdrawn, released and stably supported outside the tray; 1.0: nail fully withdrawn, entirely inside the tray below its rim. Everything else scores 0. Video verifies the claw's engagement and loaded levering; the simulation approximates that observation from contact geometry and relative withdrawal. No best-score latch.",
+  "run_limit": "2,400 control steps (120 seconds at 20 Hz)",
+  "reset_notes": "Fresh equivalent cedar offcut or fresh side-grain site at least 30 mm from any previous hole, knot or split. Reposition the board to reproduce the fixed nail entry location. Use a fresh smooth bright 4d nail, driven 20 mm without a drilled starter hole. Record wood/nail batch and moisture; no pre-loosening. Restore board, hammer and tray to setup poses. In simulation native reset restores all poses and the material constraint before settling. Force and detailed hammer dimensions remain to be measured before physical validation.",
+  "fidelity": "Original procedural rigid meshes match the Stanley 51-613 reference; small dimensions and masses are estimates. A native force-limited D6 joint approximates smooth-nail withdrawal in cedar, initially about 158 N, decreasing with remaining embedment. Physical claw contact supplies motion; no body poses are written during action. Constraint releases once the point clears. Wood crushing/splitting and nail bending are not simulated. Material and grip forces need physical calibration.",
+  "scores": "Dream-1 (dreamlabs/dream-1-beta): 0.0 after 2,400 control steps (120 s), seed 0. Scripted native GPU demo: 1.0 in 1,930 control steps (96.5 s), seed 0.",
+  "media": "M-VP2U3N"
+}

@@ -15,8 +15,8 @@ pre-galvanized steel) hangs from the box's upper-left cover screw, swung up and 
 screw is in the box, started. A small black parts tray to the right of the box holds four yellow winged wire nuts.
 
 The instruction asks for the cover only. Done right: a nut twisted onto the bare black splice until it holds and hides
-the copper, both splices folded into the box, and the cover swung down over the box onto its lower screw. See
-scoring.py and capping.py.
+the copper, both splices folded into the box (the cover will not close over a wire sticking out), and the cover swung
+down over the box onto its lower screw. See scoring.py and capping.py.
 
 Run it:  inspect-robots run --embodiment yam_arena -E task=task.py -E object_jitter=0 -E control_hz=20 \\
          --scorer task_score ...
@@ -36,10 +36,7 @@ import capping  # noqa: E402
 import layout as L  # noqa: E402
 import mechkit as mk  # noqa: E402  (importing it hooks yam_arena so the assemblies are built as articulations)
 import parts  # noqa: E402
-import rigstate  # noqa: E402
 import scoring  # noqa: E402
-
-rigstate.install()
 
 SCENE = "station"
 SCORE_OVER = "end"
@@ -103,14 +100,13 @@ OBJECTS = [JBOX, BLACK, WHITE, TRAY, *NUTS]
 
 # -- the per-step rules -----------------------------------------------------------------------------------------------
 CAPPER = capping.Capper()
-_EP = {"step": 0, "latched": False, "targets": {}, "history": []}
-STILL_WINDOW = 10  # control steps (0.5 s) over which "still" is judged from positions
+_EP = {"step": 0, "latched": False, "targets": {}}
 
 
 @mk.on_reset
 def _reset() -> None:
     CAPPER.reset()
-    _EP.update(step=0, latched=False, targets={}, history=[])
+    _EP.update(step=0, latched=False, targets={})
 
 
 def _follow(key: str, q: float, band: float) -> float:
@@ -146,7 +142,6 @@ def _rules(states) -> None:
         SCREW.arm()
         print(f"[cap-splice] step {_EP['step']}: the cover is closed on both screws", flush=True)
     mk.set_targets(JBOX, "cover", L.CLOSED if _EP["latched"] else _follow("cover", q, L.COVER_HOLD_BAND))
-    _EP["history"] = (_EP["history"] + [_pose_vector(states)])[-STILL_WINDOW:]
     tip, d, R_tip = copper_tip(states["black"])
     for j, nut in enumerate(NUTS):
         s = states[nut.name]
@@ -172,58 +167,15 @@ def _capped(objects) -> bool:
     return False
 
 
-def _pose_vector(objects) -> tuple[np.ndarray, np.ndarray]:
-    """(joint angles: the cover and both splices; positions of the loose nuts) now."""
-    q = [objects["jbox"].joint("cover")] + [objects[n].joint(f"w{i}") for n in ("black", "white") for i in range(L.LINKS)]
-    nuts = [np.asarray(objects[n.name].origin, float) for j, n in enumerate(NUTS)
-            if not (CAPS[j].enabled and not CAPS[j].broken)]
-    return np.asarray(q, float), (np.asarray(nuts) if nuts else np.zeros((0, 3)))
-
-
-def _still() -> bool:
-    """Nothing moved over the last STILL_WINDOW steps: joints within 0.01 rad, loose nuts within 2 mm. (Judged from
-    positions: the joint-velocity readings of the splices jitter with a nut bonded on.)"""
-    h = _EP["history"]
-    if len(h) < STILL_WINDOW:
-        return False
-    qs = np.asarray([x[0] for x in h])
-    if np.max(np.ptp(qs, axis=0)) > 0.01:
-        return False
-    if len({x[1].shape for x in h}) != 1:
-        return False
-    ps = np.asarray([x[1] for x in h])
-    return bool(ps.size == 0 or np.max(np.linalg.norm(ps - ps[-1], axis=-1)) < L.STILL_V * 0.2)
-
-
-def wire_points(objects) -> np.ndarray:
-    pts = []
-    for name in ("black", "white"):
-        st, root = objects[name], np.asarray(L.SPLICE_ROOT[name], float)
-        for i in range(L.LINKS):
-            for p in (L.link_start(name, i), L.link_start(name, i + 1)):
-                pts.append(st.link_to_world(f"w{i}", p - root))
-    return np.asarray(pts)
-
-
 def reading(objects) -> scoring.Reading:
-    jbox = objects["jbox"]
-    nuts = [objects[n.name] for n in NUTS]
-
-    def near(points):
-        d = jbox.distance(points, bodies=("cover",))
-        for s in nuts:
-            d = np.minimum(d, s.distance(points))
-        return d
-
-    released = rigstate.released(rigstate.arms(), near, clearance=L.CLEAR)
-    still = _still()
-    closed = scoring.cover_closed(jbox.joint("cover"), _EP["latched"])
-    return scoring.judge(_capped(objects), closed, scoring.wires_inside(wire_points(objects)), released, still)
+    # The white splice's nut is part of its last link (parts.splice_parts): it cannot come off in the simulator.
+    closed = scoring.cover_closed(objects["jbox"].joint("cover"), _EP["latched"])
+    return scoring.judge(_capped(objects), True, closed)
 
 
 def score(objects) -> float:
-    """See scoring.py: 1.0 the bare black splice capped, the wires in the box and the cover closed, let go; 0.75 not
-    let go; 0.5 capped, cover open; 0.25 capped and closed with a wire caught outside; 0 the splice left bare."""
+    """See scoring.py: 1.0 a nut on each splice (the bare black one capped) and the cover closed; 0.5 the nuts on, the
+    cover open; 0 the black splice left bare or the white nut off."""
     return reading(objects).score
 
 

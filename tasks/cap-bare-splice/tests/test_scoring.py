@@ -126,35 +126,23 @@ class CapperTest(unittest.TestCase):
 
 class ScoreTest(unittest.TestCase):
     def test_tiers(self):
-        self.assertEqual(scoring.judge(True, True, True, True, True).score, 1.0)
-        self.assertEqual(scoring.judge(True, True, True, False, True).score, 0.75)
-        self.assertEqual(scoring.judge(True, True, True, True, False).score, 0.75)
-        self.assertEqual(scoring.judge(True, False, True, True, True).score, 0.5)
-        self.assertEqual(scoring.judge(True, False, False, True, True).score, 0.5)
-        self.assertEqual(scoring.judge(True, True, False, True, True).score, 0.25)
+        self.assertEqual(scoring.judge(True, True, True).score, 1.0)
+        self.assertEqual(scoring.judge(True, True, False).score, 0.5)
 
-    def test_bare_splice_scores_zero_whatever_else(self):
+    def test_a_splice_without_its_nut_scores_zero_whatever_else(self):
         for closed in (True, False):
-            for inside in (True, False):
-                for released in (True, False):
-                    self.assertEqual(scoring.judge(False, closed, inside, released, True).score, 0.0)
+            self.assertEqual(scoring.judge(False, True, closed).score, 0.0)
+            self.assertEqual(scoring.judge(True, False, closed).score, 0.0)
+            self.assertEqual(scoring.judge(False, False, closed).score, 0.0)
 
     def test_cover_closed_needs_latch_and_angle(self):
         self.assertTrue(scoring.cover_closed(L.CLOSED + 0.01, True))
         self.assertFalse(scoring.cover_closed(L.CLOSED + 0.01, False))
         self.assertFalse(scoring.cover_closed(L.CLOSED + 0.2, True))
 
-    def test_wires_inside(self):
-        inside = np.array([[L.RIM_X + 0.01, L.BOX_Y + 0.02, L.BOX_Z - 0.03]])
-        self.assertTrue(scoring.wires_inside(inside))
-        out_front = np.array([[L.RIM_X - 0.005, L.BOX_Y, L.BOX_Z]])
-        self.assertFalse(scoring.wires_inside(np.vstack([inside, out_front])))
-        out_side = np.array([[L.RIM_X + 0.01, L.BOX_Y + L.INNER_HALF + 0.002, L.BOX_Z]])
-        self.assertFalse(scoring.wires_inside(out_side))
-
     def test_every_outcome_scored(self):
-        seen = {scoring.judge(*bits).score for bits in np.ndindex(2, 2, 2, 2, 2)}
-        self.assertEqual(seen, {0.0, 0.25, 0.5, 0.75, 1.0})
+        seen = {scoring.judge(*bits).score for bits in np.ndindex(2, 2, 2)}
+        self.assertEqual(seen, {0.0, 0.5, 1.0})
 
 
 if __name__ == "__main__":

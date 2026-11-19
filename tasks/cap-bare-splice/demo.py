@@ -10,7 +10,6 @@ import numpy as np
 
 import capping
 import layout as L
-import scoring
 
 T = None  # the task module, set by demo_script
 
@@ -324,6 +323,12 @@ def _close_cover(ctx, arm):
     arm.trim = np.zeros(3)
 
 
+def _wire_inside(p) -> bool:
+    """A wire point (world) behind the rim plane and within the box's inside walls (the demo's own check)."""
+    return bool(p[0] >= L.RIM_X + L.INSIDE_MARGIN and abs(p[1] - L.BOX_Y) <= L.INNER_HALF
+                and abs(p[2] - L.BOX_Z) <= L.INNER_HALF)
+
+
 def _report_wires(ctx) -> None:
     st = ctx.states()
     for name in ("black", "white"):
@@ -332,7 +337,7 @@ def _report_wires(ctx) -> None:
         for i in range(L.LINKS):
             for p_ in (L.link_start(name, i), L.link_start(name, i + 1)):
                 w = s_.link_to_world(f"w{i}", p_ - root)
-                if not scoring.wires_inside(w[None, :]):
+                if not _wire_inside(w):
                     bad.append((i, np.round((w - np.array([L.RIM_X, L.BOX_Y, L.BOX_Z])) * 1000).astype(int).tolist()))
         q = np.degrees([s_.joint(f"w{i}") for i in range(L.LINKS)])
         o = _outermost(ctx, name)

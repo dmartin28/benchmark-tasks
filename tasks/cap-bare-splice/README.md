@@ -21,8 +21,8 @@ with an identified insulating device). Then both splices are folded into the box
 3. **Deep enough.** A nut that bites with copper still showing at its skirt does not count; the copper has to end up
    at least 10.5 mm into the bore.
 4. **Folding the wires in.** Both splices stick out 8.6 cm past the rim of a box 54 mm deep. They have to be bent back
-   inside, the capped one without pulling its nut off, before the cover will close; a wire left outside is caught
-   between the cover and the box.
+   inside, the capped one without pulling its nut off, before the cover will close; a wire left sticking out keeps
+   the cover from closing.
 5. **Swinging the cover.** The cover hangs from its upper-left screw. It has to be turned half a turn about that
    screw, down past the box's side, until it lies flat on the box with its slot over the lower screw.
 
@@ -64,27 +64,25 @@ for it, every control step, for every nut against the black splice's copper:
 
 ## Scoring (scoring.py)
 
-At the end of the trial, from the trial video, a close-up photo and a ruler. The trial ends with the cover lying flat over
-both screws: tightening the screws is not part of it.
+At the end of the trial, from the trial video and a close-up photo. The trial ends with the cover lying flat over both
+screws: tightening the screws is not part of it.
 
 | Score | Outcome |
 |---|---|
-| 1.0 | The black splice capped; the cover closed; every wire inside the box; both grippers at least 3 cm from the cover and the nuts; nothing moving. Held 1 s, which ends the trial |
-| 0.75 | The same, but a gripper still within 3 cm of the cover or a nut, or something still moving |
-| 0.5 | The black splice capped, the cover not closed |
-| 0.25 | The black splice capped and the cover closed, but a wire outside the box (caught at the cover's edge) |
-| 0 | The black splice not capped: no nut that holds, or copper showing at its skirt, whatever else was done. A cover closed over the bare splice scores 0 |
+| 1.0 | A nut on each splice (the black splice capped; the white splice's nut still on) and the cover closed. Held 1 s, which ends the trial |
+| 0.5 | A nut on each splice, the cover not closed |
+| 0 | The black splice not capped (no nut that holds, or copper showing at its skirt), or the white splice's nut off, whatever else was done. A cover closed over the bare splice scores 0 |
 
 - **Capped**, on a real rig: the nut turned on clockwise at least two full turns, seen in the video; a close-up photo of
   its skirt shows no bare copper; it survives a light tug (about 10 N). The thresholds in the capping rule above (25 deg,
   2.5 mm, 6 mm, 10.5 mm into the bore) are the simulator's version of the same check.
-- **Cover closed:** lying within 2 deg of flat on the rim, its slots over both cover screws (not tightened).
-- **Wires inside:** every point of both splices at least 0.5 mm behind the rim's plane and within the box's inside walls.
-- **Nothing moving:** over the last 0.5 s, no splice joint or the cover turns more than 0.01 rad and no loose nut
-  moves more than 2 mm.
+- **White nut on:** the white splice's nut still on its splice at the end, surviving the same light tug. In the
+  simulator it is part of the splice's last link and cannot come off.
+- **Cover closed:** lying flat on the box's rim all round, its slots over both cover screws (not tightened). A wire
+  left sticking out of the box keeps the cover from closing: on a real box it holds an edge off the rim, and in the
+  simulator the cover collides with the wires. The simulator's check: the cover within 2 deg of the end of its swing.
 
-The white splice's nut is already on and counts for nothing. Nuts dropped on the table do not change the score unless
-a gripper is within 3 cm of one or one is still moving.
+Where the wires end up inside the box, where the grippers are and loose nuts on the table do not change the score.
 
 ## Run a trial
 
@@ -126,15 +124,14 @@ a second (a full-limit trial takes about 12 minutes), without cameras about 6.
    fingertips push the end of any splice still within 12 mm of the rim back into the box (the black one on its wire,
    behind the nut).
 4. **Close the cover.** The left hand's closed fingertips push the cover's edge round its screw, half a turn, until it
-   lies on the box. Both arms park clear.
+   lies on the box.
 
 It reads the simulator's state to plan (the nut's pose, the splices' joints, the cover's angle); it never moves an
 object or edits the simulation. Grip forces: 25 N a finger on the nut, 40 N on the wires.
 
 ## Results in simulation
 
-Scripted demo on the GPU, recorded: task_score 1.0, success at step 2,040 (102 s) of the 3,600-step limit, reproduced
-step for step in a run without cameras. The nut bites at step 826 with the copper 15.1 mm in; the cover closes at
+Scripted demo on the GPU, recorded: task_score 1.0, success at step 2,013 (101 s) of the 3,600-step limit. The nut bites at step 826 with the copper 15.1 mm in; the cover closes at
 step 1994. Dream-1 (dreamlabs/dream-1-beta, same settings): 0.0 at the 3,600-step limit; no nut went onto the splice
 and the cover was not closed. Details in `results.md`.
 
@@ -164,8 +161,8 @@ and replace the cables when they get short.
 | `layout.py` | Every dimension, mass, colour and threshold |
 | `parts.py` | The shapes of every part, from layout.py's numbers |
 | `capping.py` | When a nut bites on the bare splice, and when it covers it |
-| `scoring.py` | The score from the capping, the cover and the wires |
-| `mechkit.py`, `rigstate.py`, `demokit.py` | Mechanism kit, arm-state reader and demo runner, copied unchanged from accepted tasks in this repository |
+| `scoring.py` | The score from the nuts and the cover |
+| `mechkit.py`, `demokit.py` | Mechanism kit and demo runner, copied unchanged from accepted tasks in this repository |
 | `tests/test_scoring.py` | Offline checks of the capping rule and every scoring tier |
 | `setup.png`, `results.md` | The setup screenshot and the verification record |
 

@@ -150,9 +150,7 @@ NUT_BREAK_FORCE = 30.0  # N: a nut that bit pulls off above this (a light tug is
 NUT_SLIP = (25.0, 90.0)  # mm, deg: only a nut torn off (the score still needs the copper 10.5 mm in at the end)
 
 # -- scoring -----------------------------------------------------------------------------------------------------------
-CLEAR = 0.03  # both grippers at least this far from the cover and the nuts at the end
-STILL_V = 0.01  # m/s
-INSIDE_MARGIN = 0.5 * MM  # every wire point at least this far behind the rim plane, inside the box's walls
+INSIDE_MARGIN = 0.5 * MM  # the demo's fold check: wire points at least this far behind the rim plane
 SUCCESS_HOLD_S = 1.0
 
 
